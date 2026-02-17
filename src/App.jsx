@@ -12,6 +12,7 @@ function App() {
   const [countryData, setCountryData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [countryError, setCountryError] = useState("");
 
   const fetchData = async () => {
     if (!lat || !lon || isNaN(lat) || isNaN(lon)) {
@@ -22,6 +23,7 @@ function App() {
     try {
       setLoading(true);
       setError("");
+      setCountryError("");
 
       const latNum = parseFloat(lat);
       const lonNum = parseFloat(lon);
@@ -59,11 +61,13 @@ function App() {
           );
           setCountryData(countryRes.data[0]);
         } catch (err) {
-          setError("No country data found for this location");
+          // Non-blocking notice when country details can't be fetched
+          setCountryError("No country data found for this location");
           setCountryData(null);
         }
       } else {
-        setError("Unable to determine country for this location");
+        // Coordinates may be in international waters or undefined area
+        setCountryError("No country found for these coordinates");
         setCountryData(null);
       }
     } catch (err) {
@@ -120,6 +124,16 @@ function App() {
           <div className="bg-red-500 bg-opacity-20 backdrop-blur-md border border-red-400 text-red-100 p-3 sm:p-4 rounded-xl flex items-center gap-2 sm:gap-3 shadow-lg text-sm sm:text-base">
             <span className="text-xl sm:text-2xl flex-shrink-0">⚠️</span>
             <p className="font-semibold">{error}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Country-not-found Notice (non-blocking) */}
+      {countryError && (
+        <div className="max-w-4xl mx-auto mt-4 sm:mt-6 px-4 sm:px-6 md:px-8">
+          <div className="bg-yellow-500 bg-opacity-20 backdrop-blur-md border border-yellow-400 text-yellow-100 p-3 sm:p-4 rounded-xl flex items-center gap-2 sm:gap-3 shadow-lg text-sm sm:text-base">
+            <span className="text-xl sm:text-2xl flex-shrink-0">ℹ️</span>
+            <p className="font-semibold">{countryError}</p>
           </div>
         </div>
       )}

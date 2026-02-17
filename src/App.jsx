@@ -85,10 +85,10 @@ function App() {
       </div>
 
       {/* Hero Section */}
-      <div className="text-center pt-24 pb-12 px-4">
-        <div className="text-7xl animate-bounce mb-6">🌍</div>
+      <div className="text-center pt-12 sm:pt-20 md:pt-24 pb-8 sm:pb-12 px-4 sm:px-6 md:px-8">
+        <div className="text-5xl sm:text-6xl md:text-7xl animate-bounce mb-4 sm:mb-6">🌍</div>
 
-        <h1 className="text-5xl sm:text-6xl font-extrabold text-white tracking-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight">
           Geographic
           <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent leading-normal pb-2">
   Insight Hub
@@ -96,14 +96,14 @@ function App() {
 
         </h1>
 
-        <p className="mt-6 text-lg text-blue-100 max-w-2xl mx-auto">
+        <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg text-blue-100 max-w-2xl mx-auto">
           Explore real-time weather, elevation & country data
           using open-source geographic APIs.
         </p>
       </div>
 
       {/* Search Section */}
-      <div className="max-w-4xl mx-auto px-4">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
         <SearchBar
           lat={lat}
           lon={lon}
@@ -116,9 +116,9 @@ function App() {
 
       {/* Error Message */}
       {error && (
-        <div className="max-w-4xl mx-auto mt-6 px-4">
-          <div className="bg-red-500 bg-opacity-20 backdrop-blur-md border border-red-400 text-red-100 p-4 rounded-xl flex items-center gap-3 shadow-lg">
-            <span className="text-2xl">⚠️</span>
+        <div className="max-w-4xl mx-auto mt-4 sm:mt-6 px-4 sm:px-6 md:px-8">
+          <div className="bg-red-500 bg-opacity-20 backdrop-blur-md border border-red-400 text-red-100 p-3 sm:p-4 rounded-xl flex items-center gap-2 sm:gap-3 shadow-lg text-sm sm:text-base">
+            <span className="text-xl sm:text-2xl flex-shrink-0">⚠️</span>
             <p className="font-semibold">{error}</p>
           </div>
         </div>
@@ -126,10 +126,10 @@ function App() {
 
       {/* Results */}
       {data && (
-        <div className="max-w-7xl mx-auto mt-12 px-4 pb-20">
+        <div className="max-w-7xl mx-auto mt-8 sm:mt-12 px-4 sm:px-6 md:px-8 pb-16 sm:pb-20">
           <InfoCards data={data} countryData={countryData} />
 
-          <div className="mt-12 bg-white bg-opacity-10 backdrop-blur-xl rounded-3xl p-6 border border-white border-opacity-20 shadow-2xl">
+          <div className="mt-8 sm:mt-12 bg-white bg-opacity-10 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white border-opacity-20 shadow-2xl">
             <MapView lat={lat} lon={lon} />
           </div>
         </div>
